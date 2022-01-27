@@ -1,27 +1,16 @@
 import React, { useCallback } from "react";
 import { Loader } from "./";
-
-// Found this function on stack overflow: https://stackoverflow.com/questions/16637051/adding-space-between-numbers
-function numberWithSpaces(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-}
+import { numberWithSpaces } from "../utils";
 
 const AllPlanets = ({ allPlanets, isLoading, currentError }) => {
-  console.log(allPlanets[0], "in all planets");
-
   const findPercentageOfWater = useCallback((surfaceWater, diameter) => {
-    // console.log(surfaceWater, diameter, 'water')
     const percentOfSurfaceWater = surfaceWater / 100;
-    // console.log(percentOfSurfaceWater, "percent");
     const radius = diameter / 2;
-    // console.log(diameter, radius, "rad");
     const totalAreaOfPlanet = 4 * Math.PI * Math.pow(radius, 2);
 
-    // console.log(totalAreaOfPlanet, "total area");
     const areaCoveredInWater = Math.round(
       totalAreaOfPlanet * percentOfSurfaceWater
     );
-    // console.log(areaCoveredInWater, "areaCoveredInWater");
 
     return numberWithSpaces(areaCoveredInWater);
   }, []);
@@ -33,7 +22,11 @@ const AllPlanets = ({ allPlanets, isLoading, currentError }) => {
   if (currentError) {
     return (
       <div>
-        <img className="errorMessageImg" src={"/planet.jpeg"} />
+        <img
+          className="errorMessageImg"
+          src={"/planet.jpeg"}
+          alt="An exploding planet"
+        />
         <p className="errorMessage">{currentError.message}</p>
       </div>
     );
@@ -49,7 +42,9 @@ const AllPlanets = ({ allPlanets, isLoading, currentError }) => {
             <th># of Residents</th>
             <th>Terrain</th>
             <th>Population</th>
-            <th>Water Cover (km<sup>2</sup>)</th>
+            <th>
+              Water Cover (km<sup>2</sup>)
+            </th>
           </tr>
         </thead>
         <tbody>

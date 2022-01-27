@@ -1,7 +1,6 @@
 # Star Wars Planets
 
 
-
 To run locally:
 Run `npm install`
 

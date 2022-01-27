@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
-import { AllPlanets, SinglePlanet } from "./";
-import { getPlanets, storePlanets } from "../auth";
+import { AllPlanets } from "./";
+import { getPlanets, storePlanets } from "../utils";
 
 const Main = () => {
   const [allPlanets, setAllPlanets] = useState([]);
@@ -46,7 +46,7 @@ const Main = () => {
 
   useEffect(() => {
     fetchAllPlanets();
-  }, []);
+  }, [fetchAllPlanets]);
 
   return (
     <div className="main_container">
