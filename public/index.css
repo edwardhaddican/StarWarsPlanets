@@ -8,6 +8,24 @@
   text-align: center;
 }
 
+.errorMessage{
+  color: red; 
+  font-weight: bold;
+  text-align: center;
+  font-size: x-large;
+  /* margin-top: 10%; */
+}
+
+.errorMessageImg{
+  width: 25%;
+  display: block;
+  margin: 0 auto
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
 
 /* spacing */
 
@@ -38,9 +56,9 @@ thead th:nth-child(5) {
   width: 20%;
 } */
 
-thead{
+/* thead{
   width: 1fr
-}
+} */
 
 th, td {
   padding: 20px;

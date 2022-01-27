@@ -1,10 +1,15 @@
-import React from "react";
-import { Loading } from "./";
+import React, { useCallback } from "react";
+import { Loader } from "./";
 
-const AllPlanets = ({ allPlanets, isLoading }) => {
+// Found this function on stack overflow: https://stackoverflow.com/questions/16637051/adding-space-between-numbers
+function numberWithSpaces(x) {
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+}
+
+const AllPlanets = ({ allPlanets, isLoading, currentError }) => {
   console.log(allPlanets[0], "in all planets");
 
-  function findPercentageOfWater(surfaceWater, diameter) {
+  const findPercentageOfWater = useCallback((surfaceWater, diameter) => {
     // console.log(surfaceWater, diameter, 'water')
     const percentOfSurfaceWater = surfaceWater / 100;
     // console.log(percentOfSurfaceWater, "percent");
@@ -18,16 +23,24 @@ const AllPlanets = ({ allPlanets, isLoading }) => {
     );
     // console.log(areaCoveredInWater, "areaCoveredInWater");
 
-    if (areaCoveredInWater == NaN) {
-      return "?";
-    } else {
-      return areaCoveredInWater;
-    }
+    return numberWithSpaces(areaCoveredInWater);
+  }, []);
+
+  if (isLoading) {
+    return <Loader />;
+  }
+
+  if (currentError) {
+    return (
+      <div>
+        <img className="errorMessageImg" src={"/planet.jpeg"} />
+        <p className="errorMessage">{currentError.message}</p>
+      </div>
+    );
   }
 
   return (
     <div className="">
-      {isLoading ? <Loading /> : null}
       <table>
         <thead>
           <tr>
@@ -36,7 +49,7 @@ const AllPlanets = ({ allPlanets, isLoading }) => {
             <th># of Residents</th>
             <th>Terrain</th>
             <th>Population</th>
-            <th>Water Cover</th>
+            <th>Water Cover (km<sup>2</sup>)</th>
           </tr>
         </thead>
         <tbody>
@@ -44,7 +57,15 @@ const AllPlanets = ({ allPlanets, isLoading }) => {
             ? allPlanets.map((planet) => {
                 return (
                   <tr key={planet.url}>
-                    <td>{planet.name}</td>
+                    <td>
+                      <a
+                        href={planet.url}
+                        target="_blank"
+                        rel="noreferrer noopener"
+                      >
+                        {planet.name === "unknown" ? "?" : planet.name}
+                      </a>
+                    </td>
                     <td>
                       {planet.climate === "unknown" ? "?" : planet.climate}
                     </td>
@@ -61,7 +82,7 @@ const AllPlanets = ({ allPlanets, isLoading }) => {
                     <td>
                       {planet.population === "unknown"
                         ? "?"
-                        : planet.population}
+                        : numberWithSpaces(planet.population)}
                     </td>
                     <td>
                       {planet.surface_water === "unknown" ||
