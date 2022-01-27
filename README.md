@@ -10,3 +10,4 @@ React-scripts will load up a dev server on port 3000
 
 Note: the first time the page loads there will be a fairly long wait before the planets are displayed, but the wait will be significantly reduced for all future calls, until your local storage is cleared. 
 
+** the project works on both Chrome and Firefox, but is blocked by CORS in Safari. 

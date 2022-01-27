@@ -17,7 +17,7 @@ const Main = () => {
         setAllPlanets(localStoragePlanets);
         setIsLoading(false);
       } else {
-        const { data } = await axios.get(`http://swapi.dev/api/planets`);
+        const { data } = await axios.get(`http://swapi.dev/api/planets/`);
 
         if (!data.results) {
           setCurrentError(new Error("Failed to Load Data"));
