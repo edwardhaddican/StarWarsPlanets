@@ -1,0 +1,76 @@
+/* Main*/
+.main_container {
+  width: 80%;
+  margin: 0 auto;
+}
+.main_title {
+  color: black;
+  text-align: center;
+}
+
+
+/* spacing */
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  border-collapse: collapse;
+  border: 3px solid grey;
+}
+
+/* thead th:nth-child(1) {
+  width: 20%;
+}
+
+thead th:nth-child(2) {
+  width: 20%;
+}
+
+thead th:nth-child(3) {
+  width: 20%;
+}
+
+thead th:nth-child(4) {
+  width: 20%;
+}
+
+thead th:nth-child(5) {
+  width: 20%;
+} */
+
+thead{
+  width: 1fr
+}
+
+th, td {
+  padding: 20px;
+}
+
+/* typography */
+
+html {
+  font-family: 'helvetica neue', helvetica, arial, sans-serif;
+}
+
+/* thead th, tfoot th {
+  font-family: 'Rock Salt', cursive;
+  
+} */
+
+th {
+  letter-spacing: 2px;
+  
+}
+
+td {
+  letter-spacing: 1px;
+  border: 1px solid grey;
+}
+
+tbody td {
+  text-align: center;
+}
+
+tfoot th {
+  text-align: right;
+}
